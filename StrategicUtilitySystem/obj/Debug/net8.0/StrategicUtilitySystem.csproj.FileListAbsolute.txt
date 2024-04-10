@@ -1,0 +1,14 @@
+C:\Users\jglov\RiderProjects\StrategicUtilitySystem\StrategicUtilitySystem\bin\Debug\net8.0\StrategicUtilitySystem.exe
+C:\Users\jglov\RiderProjects\StrategicUtilitySystem\StrategicUtilitySystem\bin\Debug\net8.0\StrategicUtilitySystem.deps.json
+C:\Users\jglov\RiderProjects\StrategicUtilitySystem\StrategicUtilitySystem\bin\Debug\net8.0\StrategicUtilitySystem.runtimeconfig.json
+C:\Users\jglov\RiderProjects\StrategicUtilitySystem\StrategicUtilitySystem\bin\Debug\net8.0\StrategicUtilitySystem.dll
+C:\Users\jglov\RiderProjects\StrategicUtilitySystem\StrategicUtilitySystem\bin\Debug\net8.0\StrategicUtilitySystem.pdb
+C:\Users\jglov\RiderProjects\StrategicUtilitySystem\StrategicUtilitySystem\obj\Debug\net8.0\StrategicUtilitySystem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jglov\RiderProjects\StrategicUtilitySystem\StrategicUtilitySystem\obj\Debug\net8.0\StrategicUtilitySystem.AssemblyInfoInputs.cache
+C:\Users\jglov\RiderProjects\StrategicUtilitySystem\StrategicUtilitySystem\obj\Debug\net8.0\StrategicUtilitySystem.AssemblyInfo.cs
+C:\Users\jglov\RiderProjects\StrategicUtilitySystem\StrategicUtilitySystem\obj\Debug\net8.0\StrategicUtilitySystem.csproj.CoreCompileInputs.cache
+C:\Users\jglov\RiderProjects\StrategicUtilitySystem\StrategicUtilitySystem\obj\Debug\net8.0\StrategicUtilitySystem.dll
+C:\Users\jglov\RiderProjects\StrategicUtilitySystem\StrategicUtilitySystem\obj\Debug\net8.0\refint\StrategicUtilitySystem.dll
+C:\Users\jglov\RiderProjects\StrategicUtilitySystem\StrategicUtilitySystem\obj\Debug\net8.0\StrategicUtilitySystem.pdb
+C:\Users\jglov\RiderProjects\StrategicUtilitySystem\StrategicUtilitySystem\obj\Debug\net8.0\StrategicUtilitySystem.genruntimeconfig.cache
+C:\Users\jglov\RiderProjects\StrategicUtilitySystem\StrategicUtilitySystem\obj\Debug\net8.0\ref\StrategicUtilitySystem.dll
