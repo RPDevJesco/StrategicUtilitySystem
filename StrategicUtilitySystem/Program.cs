@@ -2,33 +2,94 @@
 
 class Program
 {
+    static double CalculateRiskRewardCost(double weight1, double reward)
+    {
+        return weight1 * reward;
+    }
+    
+    static double CostWeightRiskReward(double weight1, double reward, double  weight2, double risk, double weight3, double cost)
+    {
+        return CalculateRiskRewardCost(weight1, reward) - CalculateRiskRewardCost(weight2, risk) - CalculateRiskRewardCost(weight3, cost);
+    }
+    
     static async Task Main(string[] args)
     {
+        Random random = new Random();
         var actions = new List<IAction>
         {
             new GameAction("Explore", context =>
             {
                 if (context is GameContext gameContext && gameContext.EnvironmentType == "Forest")
                 {
-                    return 0.8; // Higher utility in forests
+                    return CostWeightRiskReward(random.Next(0, 10),random.Next(0, 10),random.Next(0, 10),random.Next(0, 10),random.Next(0, 10),random.Next(0, 10)); // Higher utility in forests
                 }
-                return 0.5; // Default utility
+                return CostWeightRiskReward(random.Next(0, 10),random.Next(0, 10),random.Next(0, 10),random.Next(0, 10),random.Next(0, 10),random.Next(0, 10));
             }),
-            // Adjust utility based on number of enemies
-            new GameAction("Attack", context => context is GameContext { NumberOfEnemies: > 2 } ? 0.6 : 0.4)
+            new GameAction("Attack", context =>
+            {
+                if (context is GameContext gameContext && gameContext.NumberOfEnemies > 2)
+                {
+                    return CostWeightRiskReward(random.Next(0, 10),random.Next(0, 10),random.Next(0, 10),random.Next(0, 10),random.Next(0, 10),random.Next(0, 10));
+                }
+                return CostWeightRiskReward(random.Next(0, 10),random.Next(0, 10),random.Next(0, 10),random.Next(0, 10),random.Next(0, 10),random.Next(0, 10));
+            }),
+            new GameAction("Defend", context =>
+            {
+                if (context is GameContext gameContext && gameContext.NumberOfAllies < gameContext.NumberOfEnemies)
+                {
+                    return CostWeightRiskReward(random.Next(0, 10),random.Next(0, 10),random.Next(0, 10),random.Next(0, 10),random.Next(0, 10),random.Next(0, 10));
+                }
+                return CostWeightRiskReward(random.Next(0, 10),random.Next(0, 10),random.Next(0, 10),random.Next(0, 10),random.Next(0, 10),random.Next(0, 10));
+            }),
+            new GameAction("Gather Resources", context =>
+            {
+                if (context is GameContext gameContext && gameContext.ResourceAvailability > 0.5)
+                {
+                    return CostWeightRiskReward(random.Next(0, 10),random.Next(0, 10),random.Next(0, 10),random.Next(0, 10),random.Next(0, 10),random.Next(0, 10));
+                }
+                return CostWeightRiskReward(random.Next(0, 10),random.Next(0, 10),random.Next(0, 10),random.Next(0, 10),random.Next(0, 10),random.Next(0, 10));
+            }),
+            new GameAction("Retreat", context =>
+            {
+                if (context is GameContext gameContext && gameContext.NumberOfAllies < 2)
+                {
+                    return CostWeightRiskReward(random.Next(0, 10),random.Next(0, 10),random.Next(0, 10),random.Next(0, 10),random.Next(0, 10),random.Next(0, 10));
+                }
+                return CostWeightRiskReward(random.Next(0, 10),random.Next(0, 10),random.Next(0, 10),random.Next(0, 10),random.Next(0, 10),random.Next(0, 10));
+            })
         };
-        
-        var context = new GameContext(numberOfEnemies: 3, numberOfAllies: 1, resourceAvailability: 0.5, environmentType: "Forest");
-        Console.WriteLine($"Context Summary: {context?.GetContextSummary()}");
+
+        var enemyNum = new Random().Next(0, 10);
+        var allyNum = new Random().Next(0, 10);
+        var resourceNum = new Random().Next(0, 10);
+        var context = new GameContext(numberOfEnemies: enemyNum, numberOfAllies: allyNum, resourceAvailability: resourceNum, environmentType: "Forest");
+        Console.WriteLine($"Context Summary: {context.GetContextSummary()}");
         var decisionMaker = new DecisionMaker();
 
-        // Choose the best action based on the initial context
-        var bestAction = await decisionMaker.ChooseBestActionAsync(actions, context);
-        Console.WriteLine($"Best action: {bestAction?.Name}");
+        while (true)
+        {
+            var bestAction = await decisionMaker.ChooseBestActionAsync(actions, context);
+            if (bestAction != null)
+            {
+                Console.WriteLine($"Best action: {bestAction.Name}");
+            }
+            else
+            {
+                // Choose the action with the highest utility below the threshold
+                bestAction = decisionMaker.GetBestActionBelowThreshold(actions, context);
+                Console.WriteLine($"Best action below threshold: {bestAction?.Name ?? "None"}");
+            }
+            Console.WriteLine($"Current Threshold: {decisionMaker.GetCurrentThreshold()}");
 
-        // Example of adjusting threshold and re-evaluating the best action
-        decisionMaker.AdjustThreshold(0.7);
-        bestAction = await decisionMaker.ChooseBestActionAsync(actions, context);
-        Console.WriteLine($"Best action with adjusted threshold: {bestAction?.Name}");
+            // Simulate a change in context or environment
+            // For example, randomly change the number of enemies
+            context.NumberOfEnemies = new Random().Next(0, 10);
+            context.NumberOfAllies = new Random().Next(0, 10);
+            context.ResourceAvailability = new Random().Next(0, 10);
+            Console.WriteLine($"Updated Context Summary: {context.GetContextSummary()}");
+
+            // Add a delay to simulate time passing between decisions
+            await Task.Delay(1000);
+        }
     }
 }

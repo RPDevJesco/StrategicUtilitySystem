@@ -12,3 +12,4 @@ C:\Users\jglov\RiderProjects\StrategicUtilitySystem\StrategicUtilitySystem\obj\D
 C:\Users\jglov\RiderProjects\StrategicUtilitySystem\StrategicUtilitySystem\obj\Debug\net8.0\StrategicUtilitySystem.pdb
 C:\Users\jglov\RiderProjects\StrategicUtilitySystem\StrategicUtilitySystem\obj\Debug\net8.0\StrategicUtilitySystem.genruntimeconfig.cache
 C:\Users\jglov\RiderProjects\StrategicUtilitySystem\StrategicUtilitySystem\obj\Debug\net8.0\ref\StrategicUtilitySystem.dll
+C:\Users\jglov\RiderProjects\StrategicUtilitySystem\StrategicUtilitySystem\obj\Debug\net8.0\StrategicUtilitySystem.sourcelink.json
